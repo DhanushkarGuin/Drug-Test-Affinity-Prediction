@@ -32,6 +32,9 @@ df_isomeric = pd.DataFrame(encoded_isomeric_smiles)
 
 drug_indices_ds = pd.read_csv('datasets/drugs.csv')
 
+df_canonical = df_canonical.add_prefix('canonical_')
+df_isomeric = df_isomeric.add_prefix('isomeric_')
+
 df_canonical['Drug_Index'] = drug_indices_ds['Drug_Index']
 df_isomeric['Drug_Index'] = drug_indices_ds['Drug_Index']
 
