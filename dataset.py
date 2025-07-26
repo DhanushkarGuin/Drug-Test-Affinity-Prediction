@@ -14,5 +14,15 @@ print(final_ds.head())
 ## Checking for Missing Values if any
 print(final_ds.isnull().sum())
 
+## Importing the Smiles Dataset
+canonical_df = pd.read_csv('smiles_dataset/canonical_smiles.csv')
+isomeric_df = pd.read_csv('smiles_dataset/isomeric_smiles.csv')
+
+## Merging into one final dataset
+final_ds = final_ds.drop(columns=['Canonical_SMILES','Isomeric_SMILES'])
+
+final_ds = pd.merge(final_ds,canonical_df, on='Drug_Index')
+final_ds = pd.merge(final_ds,isomeric_df, on='Drug_Index')
+
 ## Exporting the finalized dataset
 final_ds.to_csv('Finalized_dataset.csv', index=False)
