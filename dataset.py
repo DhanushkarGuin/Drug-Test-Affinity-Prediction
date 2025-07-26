@@ -15,4 +15,4 @@ print(final_ds.head())
 print(final_ds.isnull().sum())
 
 ## Exporting the finalized dataset
-final_ds.to_csv('Finalized_dataset.csv')
+final_ds.to_csv('Finalized_dataset.csv', index=False)
