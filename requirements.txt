@@ -1,0 +1,5 @@
+pandas
+numpy
+smiles_encoder
+scikit-learn
+Tensorflow
