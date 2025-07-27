@@ -33,5 +33,8 @@ final_ds = pd.merge(final_ds,sequences_df, on='Protein_Index')
 ## Dropping features that do not contribute to prediction
 final_ds = final_ds.drop(columns=['Sequence','Drug_Index', 'Protein_Index', 'Accession_Number','Gene_Name','CID'])
 
+## Fill all missing values with zeros
+final_ds = final_ds.fillna(0)
+
 ## Exporting the finalized dataset
 final_ds.to_csv('Finalized_dataset.csv', index=False)
