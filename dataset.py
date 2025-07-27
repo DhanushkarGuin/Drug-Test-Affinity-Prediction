@@ -18,11 +18,20 @@ print(final_ds.isnull().sum())
 canonical_df = pd.read_csv('smiles_dataset/canonical_smiles.csv')
 isomeric_df = pd.read_csv('smiles_dataset/isomeric_smiles.csv')
 
-## Merging into one final dataset
+## Merging with final dataset
 final_ds = final_ds.drop(columns=['Canonical_SMILES','Isomeric_SMILES'])
 
 final_ds = pd.merge(final_ds,canonical_df, on='Drug_Index')
 final_ds = pd.merge(final_ds,isomeric_df, on='Drug_Index')
+
+## Importing the Sequences dataset
+sequences_df = pd.read_csv('sequence_dataset/sequences.csv')
+
+## Merging with final dataset
+final_ds = pd.merge(final_ds,sequences_df, on='Protein_Index')
+
+## Dropping features that do not contribute to prediction
+final_ds = final_ds.drop(columns=['Sequence','Drug_Index', 'Protein_Index', 'Accession_Number','Gene_Name','CID'])
 
 ## Exporting the finalized dataset
 final_ds.to_csv('Finalized_dataset.csv', index=False)
